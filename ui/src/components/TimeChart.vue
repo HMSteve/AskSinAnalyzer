@@ -35,6 +35,7 @@
       this.hightchart = Highcharts.stockChart(this.$refs.chart, {
         chart: {
           zoomType: 'x',
+          animation: false
         },
         xAxis: {
           events: {
@@ -42,7 +43,7 @@
               setTimeFilterDebounced(ev.min, ev.max);
             }
           },
-          // type: 'datetime',
+          type: 'datetime',
           ordinal: false,
         },
         time: { useUTC: false },
@@ -52,6 +53,10 @@
             type: 'minute',
             count: 1,
             text: '1m'
+          }, {
+            type: 'minute',
+            count:5,
+            text: '5m'
           }, {
             type: 'minute',
             count: 10,
@@ -69,12 +74,21 @@
             text: 'All'
           }]
         },
+        plotOptions: {
+          column: {
+            pointPlacement : 'on',
+            groupPadding: 0.1,
+            dataGrouping: {
+              groupPixelWidth: 30
+            }
+          }
+        },
         title: { text: 'Telegramme' },
         exporting: { enabled: false },
-        // yAxis: { max: 12, tickAmount: 4 },
         series: [{
-          name: 'Telegrammdichte',
+          name: 'Telegramme pro Zeiteinheit',
           type: 'column',
+          maxPointWidth: 15,
           fillColor: {
             linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
             stops: [
