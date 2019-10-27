@@ -1,7 +1,6 @@
 CHANGELOG.html
 .DS_Store
 node_modules
-/dist
 /tmp
 
 # local env files
